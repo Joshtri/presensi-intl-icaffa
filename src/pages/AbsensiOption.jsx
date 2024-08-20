@@ -3,8 +3,17 @@ import { Card, TextInput } from 'flowbite-react'
 import Layout from './Layout'
 import Welcome from '../components/Welcome'
 import { Label, Select } from 'flowbite-react'
+import AbsensiPeserta from '../components/AbsensiPeserta'
+import OptionAbsen from '../components/OptionAbsen'
+import { useState } from 'react'
+import AbsensiTamu from '../components/AbsensiTamu'
 
 function AbsensiOption() {
+  const [selectedOption, setSelectedOption] = useState(null)
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option)
+  }
   return (
     <Layout>
         <div className='flex justify-center px-4'>
@@ -12,37 +21,18 @@ function AbsensiOption() {
                 <Welcome/>
 
                 {/* bagian ini merupakan button opsi untuk absensi peserta */}
+                <p>There are two options for attendance: one for registered participants, and one for guests.</p>
+
                 <h6>Please fill in the following form.</h6>
+                {/* Button group for attendance options */}
+                {/* <OptionAbsen/> */}
 
-              {/* Form input fields */}
-              <form className='mt-4'>
-              <div className='mb-4'>
-                <Label htmlFor="search" value="Search Name" className="" />
-                <TextInput
-                  id="search"
-                  type="search"
-                  placeholder="Search for a name..."
-                  className="w-4/4 mt-3"
-                />
-              </div>
+                <OptionAbsen onOptionClick={handleOptionClick} />
 
-                <div className='mb-4'>
-                <Label htmlFor='fullname' value='FullName' className='block text-sm font-medium text-gray-700 mb-3'/>
-                  <Select className='bg-green-500 border border-gray-300 text-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 block w-4/4 '>
-                    <option>-</option>
-                    <option>Alex Higgins</option>
+                {/* Conditionally render the component based on selected option */}
+                {selectedOption === 'registered' && <AbsensiPeserta />}
+                {selectedOption === 'unregistered' && <AbsensiTamu />} 
 
-                  </Select>
-
-                </div>
-
-                <hr></hr>
-                <div className="flex justify-center">
-                  <button type="button" className="text-white bg-gradient-to-br from-green-600 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5   
-                text-center me-2 mb-2 mt-2">Submit Present</button>
-                </div>
-
-              </form>
             </Card>
         </div>
     </Layout>
