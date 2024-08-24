@@ -11,7 +11,22 @@ export default {
 
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        'fade-in-slow': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        'widen': {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' },
+        },
+      },
+      animation: {
+        'fade-in-slow': 'fade-in-slow 1.5s ease-in-out',
+        'widen': 'widen 1.5s ease-in-out',
+      },
+    },
   },
   plugins: [
     // eslint-disable-next-line no-undef

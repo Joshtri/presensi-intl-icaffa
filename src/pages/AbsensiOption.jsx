@@ -20,8 +20,24 @@ function AbsensiOption() {
             <Card className='max-w-4xl w-full p-1 mt-8 mb-7'>
                 <Welcome/>
 
-                {/* bagian ini merupakan button opsi untuk absensi peserta */}
-                <p>There are two options for attendance: one for registered participants, and one for guests.</p>
+                <div className="p-6 bg-white shadow-md rounded-md">
+                  <p className="mb-4 text-lg font-semibold">As you begin the registration process, please choose from the following options:</p>
+                  
+                  <ul className="mb-4 list-decimal list-inside space-y-2">
+                    <li>
+                      <span className="font-medium">Registered:</span> Select this option if you have already registered for the conference.
+                    </li>
+                    <li>
+                      <span className="font-medium">Others:</span> Select this option if you have been invited as a guest or if you have not registered before.
+                    </li>
+                  </ul>
+  
+                  <p className="mb-4">Please select the appropriate option and complete the form accordingly. Should you have any questions during the registration process, do not hesitate to reach out to the committee.</p>
+                  
+                  <p className="font-semibold">Thank you for being part of this conference, and we hope you enjoy the experience.</p>
+                  <p className="mt-4 font-medium text-right">Warm regards,<br/>Committee</p>
+                </div>
+
 
                 <h6>Please fill in the following form.</h6>
                 {/* Button group for attendance options */}

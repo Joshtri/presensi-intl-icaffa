@@ -40,8 +40,16 @@ function AbsensiPeserta() {
   const handleSelectPeserta = (peserta) => {
     setSelectedPeserta(peserta);
     setSearchTerm('');  // Clear the search term to hide the list
-    setNotification('*) Make sure your name is correct because it will be used for certificate purposes');
-    toast.info('Make sure your name is correct and includes titles, as it will be used for the event certificate.');
+    setNotification(
+      <>
+        <span className="text-red-500">*</span> Please ensure that you 
+        <strong className="font-bold text-blue-600"> enter name correctly</strong> for certificate purposes. 
+        <strong className="font-bold text-blue-600"> If any titles need to be included</strong> in your certificate, 
+        please include them with your name. <strong className="font-bold text-blue-600">If no title is needed</strong>, simply enter your{' '}full name.
+      </>
+    );
+    
+    toast.info(' Make sure your name and any titles needed for the certificate are correct.');
   };
 
   const handleFullNameChange = (e) => {
@@ -144,7 +152,7 @@ function AbsensiPeserta() {
         <Modal.Body>
           <div className="text-center">
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-              Are you sure your full name, including titles, is correct? You can rename your name if something are wrong😁
+            Are you sure your name and any titles are correct? You can make corrections if something is wrong
             </h3>
             <div className="flex justify-center gap-4">
               <Button
