@@ -122,7 +122,7 @@ function AbsensiPeserta() {
         </div>
 
         <div className='mb-4'>
-          <Label htmlFor='fullname' value='FullName (Corrected name with title)' className='block text-sm font-medium text-gray-700 mb-3'/>
+          <Label htmlFor='fullname' value='FullName' className='block text-sm font-medium text-gray-700 mb-3'/>
           <TextInput
             id="fullname"
             className='w-full mt-3'
