@@ -16,7 +16,7 @@ function AbsensiOption() {
   }
   return (
     <Layout>
-        <div className='flex justify-center px-4'>
+        <div className='flex justify-center px-0'>
             <Card className='max-w-4xl w-full p-1 mt-8 mb-7'>
                 <Welcome/>
 
@@ -35,7 +35,7 @@ function AbsensiOption() {
                   <p className="mb-4">Please select the appropriate option and complete the form accordingly. Should you have any questions during the registration process, do not hesitate to reach out to the committee.</p>
                   
                   <p className="font-semibold">Thank you for being part of this conference, and we hope you enjoy the experience.</p>
-                  <p className="mt-4 font-medium text-right">Warm regards,<br/>Committee</p>
+
                 </div>
 
 
