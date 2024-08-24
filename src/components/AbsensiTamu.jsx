@@ -44,7 +44,7 @@ function AbsensiTamu() {
 
       <form className='mt-4' onSubmit={handleModalSubmit}>
         <div className='mb-4'>
-          <Label htmlFor="fullname" value='Fullname' />
+          <Label htmlFor="fullname" value='Full Name' />
           <TextInput
             id="fullname"
             type='text'
