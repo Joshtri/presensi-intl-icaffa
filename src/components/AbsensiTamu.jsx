@@ -115,7 +115,7 @@ function AbsensiTamu() {
         <Modal.Body>
           <div className="text-center">
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-              Are you sure the information is correct? Please confirm your details.
+            Are you sure your name and any titles you have entered are correct? You can make corrections if something is wrong
             </h3>
             <div className="flex justify-center gap-4">
               <Button
