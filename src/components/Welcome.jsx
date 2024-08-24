@@ -3,7 +3,7 @@
 function Welcome() {
   return (
     <>
-      <h1 className="text-3xl font-bold animate-fade-in-slow">Welcome to,the 1st International Conference on Agriculture, Food, Forestry and Agribusiness (ICAFFA) 2024 Registration Form!</h1>
+      <h1 className="text-3xl font-bold animate-fade-in-slow">Welcome to the 1st International Conference on Agriculture, Food, Forestry and Agribusiness (ICAFFA) 2024 Registration Form!</h1>
       <h3 className="text-xl font-semibold animate-fade-in-slow">
 
       </h3>
