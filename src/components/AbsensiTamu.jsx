@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Label, TextInput, Modal, Button } from 'flowbite-react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -9,8 +9,16 @@ function AbsensiTamu() {
   const [institute, setInstitute] = useState('');
   const [email_address, setEmailAddress] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false); // Add loading state
+
+  useEffect(() => {
+    if (fullname) {
+      toast.info('Make sure your name and any titles needed for the certificate are correct.', { autoClose: 5000 });
+    }
+  }, [fullname]);
 
   const saveAbsentTamu = async () => {
+    setLoading(true); // Start loading
     try {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/absen_tamu`, {
         fullname,
@@ -23,8 +31,10 @@ function AbsensiTamu() {
     } catch (error) {
       toast.error('Error registering guest.');
       console.error('Error registering guest:', error);
+    } finally {
+      setLoading(false); // Stop loading
+      setIsModalOpen(false); // Close the modal after submission
     }
-    setIsModalOpen(false); // Close the modal after submission
   };
 
   const handleModalSubmit = (e) => {
@@ -53,6 +63,15 @@ function AbsensiTamu() {
             onChange={(e) => setFullname(e.target.value)}
             required
           />
+          {fullname && (
+            <p className="text-red-500 mt-2">
+              <span className="text-red-500">*</span> Please ensure that you 
+              <strong className="font-bold text-blue-600"> enter your name correctly</strong> for certificate purposes. 
+              <strong className="font-bold text-blue-600"> If any titles need to be included</strong> in your certificate, 
+              please include them with your name. <strong className="font-bold text-blue-600">If no title is needed</strong>, 
+              simply enter your{' '}full name.
+            </p>
+          )}
         </div>
 
         <div className='mb-4'>
@@ -102,8 +121,17 @@ function AbsensiTamu() {
               <Button
                 color="success"
                 onClick={saveAbsentTamu}
+                disabled={loading} // Disable button when loading
               >
-                Yes, Submit
+                {loading ? (
+                  <span className="flex items-center">
+                    <svg className="animate-spin h-5 w-5 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0z"></path>
+                    </svg>
+                    Processing...
+                  </span>
+                ) : 'Yes, Submit'}
               </Button>
               <Button
                 color="gray"
