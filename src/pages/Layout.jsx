@@ -7,7 +7,7 @@ function Layout({children}) {
   return (
     <React.Fragment>
         <NavbarComp/>
-        <main className=' p-7 bg-gray-200'>
+        <main className=' p-3 bg-gray-200'>
             {children}
         </main>
 

@@ -17,10 +17,10 @@ function AbsensiOption() {
   return (
     <Layout>
         <div className='flex justify-center px-0'>
-            <Card className='max-w-4xl w-full p-1 mt-8 mb-7'>
+            <Card className='max-w-5xl w-full p-0 mt-8 mb-7'>
                 <Welcome/>
 
-                <div className="p-6 bg-white shadow-md rounded-md">
+                <div className="p-3 bg-white shadow-md rounded-md">
                   <p className="mb-4 text-lg font-semibold">As you begin the registration process, please choose from the following options:</p>
                   
                   <ul className="mb-4 list-decimal list-inside space-y-2">
