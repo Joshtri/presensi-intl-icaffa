@@ -43,7 +43,7 @@ function AbsensiPeserta() {
     setNotification(
       <>
         <span className="text-red-500">*</span> Please ensure that you 
-        <strong className="font-bold text-blue-600"> enter name correctly</strong> for certificate purposes. 
+        <strong className="font-bold text-blue-600"> enter your name correctly</strong> for certificate purposes. 
         <strong className="font-bold text-blue-600"> If any titles need to be included</strong> in your certificate, 
         please include them with your name. <strong className="font-bold text-blue-600">If no title is needed</strong>, simply enter your{' '}full name.
       </>
