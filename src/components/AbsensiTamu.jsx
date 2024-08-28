@@ -8,7 +8,7 @@ function AbsensiTamu() {
   const [fullname, setFullname] = useState('');
   const [institute, setInstitute] = useState('');
   const [email_address, setEmailAddress] = useState('');
-  const [registeringAs, setRegisteringAs] = useState('participant');
+  // const [registeringAs, setRegisteringAs] = useState('participant');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   
@@ -30,7 +30,7 @@ function AbsensiTamu() {
         fullname,
         institute,
         email_address,
-        registering_as: registeringAs,
+        // registering_as: registeringAs,
       });
 
       toast.success('Guest registered successfully!');
@@ -103,34 +103,6 @@ function AbsensiTamu() {
             onChange={(e) => setEmailAddress(e.target.value)}
             required
           />
-        </div>
-
-        <div className='mb-4'>
-          <Label value='Registering As' />
-          <div className="flex items-center mt-2">
-            <Radio
-              id="presenter"
-              name="registering_as"
-              value="presenter"
-              checked={registeringAs === 'presenter'}
-              onChange={(e) => setRegisteringAs(e.target.value)}
-            />
-            <Label htmlFor="presenter" className="ml-2">
-              Presenter
-            </Label>
-          </div>
-          <div className="flex items-center mt-2">
-            <Radio
-              id="participant"
-              name="registering_as"
-              value="participant"
-              checked={registeringAs === 'participant'}
-              onChange={(e) => setRegisteringAs(e.target.value)}
-            />
-            <Label htmlFor="participant" className="ml-2">
-              Participant
-            </Label>
-          </div>
         </div>
 
         <hr />
