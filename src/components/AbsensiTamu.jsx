@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Label, TextInput, Modal, Button, Radio } from 'flowbite-react';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -8,13 +8,18 @@ function AbsensiTamu() {
   const [fullname, setFullname] = useState('');
   const [institute, setInstitute] = useState('');
   const [email_address, setEmailAddress] = useState('');
-  const [registeringAs, setRegisteringAs] = useState('participant'); // Default to 'participant'
+  const [registeringAs, setRegisteringAs] = useState('participant');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  
+  const toastId = useRef(null);
 
   useEffect(() => {
-    if (fullname) {
-      toast.info('Make sure your name and any titles needed for the certificate are correct.', { autoClose: 5000 });
+    if (fullname && !toastId.current) {
+      toastId.current = toast.info('Make sure your name and any titles needed for the certificate are correct.', {
+        autoClose: 5000,
+        onClose: () => { toastId.current = null; }
+      });
     }
   }, [fullname]);
 
@@ -25,7 +30,7 @@ function AbsensiTamu() {
         fullname,
         institute,
         email_address,
-        registering_as: registeringAs, // Include the registering_as field
+        registering_as: registeringAs,
       });
 
       toast.success('Guest registered successfully!');
