@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Label, TextInput, Modal, Button } from 'flowbite-react';
+import { Label, TextInput, Modal, Button, Radio } from 'flowbite-react';
 import React, { useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,8 +8,9 @@ function AbsensiTamu() {
   const [fullname, setFullname] = useState('');
   const [institute, setInstitute] = useState('');
   const [email_address, setEmailAddress] = useState('');
+  const [registeringAs, setRegisteringAs] = useState('participant'); // Default to 'participant'
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (fullname) {
@@ -18,12 +19,13 @@ function AbsensiTamu() {
   }, [fullname]);
 
   const saveAbsentTamu = async () => {
-    setLoading(true); // Start loading
+    setLoading(true);
     try {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/absen_tamu`, {
         fullname,
         institute,
         email_address,
+        registering_as: registeringAs, // Include the registering_as field
       });
 
       toast.success('Guest registered successfully!');
@@ -32,8 +34,8 @@ function AbsensiTamu() {
       toast.error('Error registering guest.');
       console.error('Error registering guest:', error);
     } finally {
-      setLoading(false); // Stop loading
-      setIsModalOpen(false); // Close the modal after submission
+      setLoading(false);
+      setIsModalOpen(false);
     }
   };
 
@@ -43,7 +45,7 @@ function AbsensiTamu() {
       toast.error('Please fill in all fields.');
       return;
     }
-    setIsModalOpen(true); // Show the modal
+    setIsModalOpen(true);
   };
 
   return (
@@ -98,6 +100,34 @@ function AbsensiTamu() {
           />
         </div>
 
+        <div className='mb-4'>
+          <Label value='Registering As' />
+          <div className="flex items-center mt-2">
+            <Radio
+              id="presenter"
+              name="registering_as"
+              value="presenter"
+              checked={registeringAs === 'presenter'}
+              onChange={(e) => setRegisteringAs(e.target.value)}
+            />
+            <Label htmlFor="presenter" className="ml-2">
+              Presenter
+            </Label>
+          </div>
+          <div className="flex items-center mt-2">
+            <Radio
+              id="participant"
+              name="registering_as"
+              value="participant"
+              checked={registeringAs === 'participant'}
+              onChange={(e) => setRegisteringAs(e.target.value)}
+            />
+            <Label htmlFor="participant" className="ml-2">
+              Participant
+            </Label>
+          </div>
+        </div>
+
         <hr />
 
         <div className="flex justify-center">
@@ -105,7 +135,7 @@ function AbsensiTamu() {
             type="submit"
             className="text-white bg-gradient-to-br from-green-600 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mt-2"
           >
-            Submit Present
+            Submit Presence
           </button>
         </div>
       </form>
@@ -121,7 +151,7 @@ function AbsensiTamu() {
               <Button
                 color="success"
                 onClick={saveAbsentTamu}
-                disabled={loading} // Disable button when loading
+                disabled={loading}
               >
                 {loading ? (
                   <span className="flex items-center">
