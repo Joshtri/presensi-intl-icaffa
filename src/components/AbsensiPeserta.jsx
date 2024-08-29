@@ -13,6 +13,7 @@ function AbsensiPeserta() {
   const [isSubmitting, setIsSubmitting] = useState(false); // Loading state for submission
   const [isLoading, setIsLoading] = useState(true); // Loading state for fetching data
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false); // State for success modal
+  const [notificationShown, setNotificationShown] = useState(false); // State for notification display
 
   useEffect(() => {
     getPeserta();
@@ -38,8 +39,11 @@ function AbsensiPeserta() {
       peserta.fullname.toLowerCase().includes(e.target.value.toLowerCase())
     );
 
-    if (filtered.length === 0) {
+    if (filtered.length === 0 && !notificationShown) {
       toast.warn("No participants found with that name. Please check the spelling.");
+      setNotificationShown(true); // Mark notification as shown
+    } else if (filtered.length > 0) {
+      setNotificationShown(false); // Reset notification state if participants are found
     }
   };
 
